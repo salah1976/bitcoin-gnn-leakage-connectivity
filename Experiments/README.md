@@ -69,6 +69,21 @@ This repository reuses the processed BITFRAUD benchmark dataset introduced in th
 
 Dataset construction, external-intelligence collection, feature engineering, and label generation are documented and implemented in the benchmark repository.
 
+## Companion Repository
+
+This work builds upon the BITFRAUD benchmark introduced in:
+
+https://github.com/salah1976/bitcoin-fraud-benchmark
+
+The companion repository contains:
+
+- benchmark construction scripts
+- blockchain data collection
+- external-intelligence collection
+- feature engineering
+- fraud-label generation
+- tabular baseline models
+
 ## Reproducibility
 
 The script contained in this directory reproduces the complete leakage-aware GNN evaluation pipeline reported in the paper, including graph construction, model training, structural exposure analysis, connected-versus-isolated evaluation, and bootstrap-based statistical validation.

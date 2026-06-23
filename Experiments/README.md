@@ -28,6 +28,61 @@ The script performs:
 
 The script reproduces the main results reported in the paper.
 
+## Elliptic++ Cross-Benchmark Validation
+
+This repository includes additional experiments conducted on the public
+Elliptic++ benchmark to validate whether the connectivity-dependent
+behavior observed on the proposed Bitcoin benchmark generalizes across
+datasets with different graph structures.
+
+### Scripts
+
+#### `elliptic_validation_lgbm.py`
+
+Performs a structural analysis of the Elliptic++ graph and verifies that
+all transaction edges are intra-timestep. The script computes:
+
+- edge connectivity statistics;
+- train-test connectivity diagnostics;
+- test-to-test connectivity analysis;
+- LightGBM performance under temporal evaluation protocols.
+
+The analysis confirms that Elliptic++ eliminates train-test graph
+connectivity by construction, providing a useful contrast to the
+proposed benchmark.
+
+#### `elliptic_gnn_external_validation.py`
+
+Evaluates GraphSAGE under multiple graph-isolation protocols:
+
+1. Standard graph
+2. No test-test edges
+3. No history-test edges
+4. Fully isolated test graph
+
+A feature-only MLP baseline is also included.
+
+The objective is not to optimize performance on Elliptic++, but to
+analyze how progressively removing graph connectivity affects predictive
+performance under a benchmark with fundamentally different structural
+properties.
+
+### Purpose
+
+The Elliptic++ experiments serve as an external validation of the
+connectivity-aware evaluation framework proposed in the paper.
+
+The results demonstrate that connectivity-driven performance gains are
+benchmark-dependent rather than universal properties of graph neural
+networks. While the proposed benchmark exhibits strong sensitivity to
+structural exposure, Elliptic++ remains largely stable under graph
+isolation due to its intra-timestep graph design and highly informative
+transaction features.
+
+These experiments support the paper's central claim that graph
+connectivity should be treated as an explicit evaluation variable rather
+than an implicit property of the benchmark.
+
 ## Experimental Protocol
 
 Training snapshots:

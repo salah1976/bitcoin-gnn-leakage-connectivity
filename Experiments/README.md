@@ -30,54 +30,39 @@ The script reproduces the main results reported in the paper.
 
 ## Elliptic++ Cross-Benchmark Validation
 
-This repository includes additional experiments conducted on the public
-Elliptic++ benchmark to validate whether the connectivity-dependent
-behavior observed on the proposed Bitcoin benchmark generalizes across
-datasets with different graph structures.
+This repository includes the external validation experiments conducted on the public **Elliptic++** benchmark to assess whether the connectivity-dependent behavior observed on the proposed Bitcoin benchmark generalizes to a graph with fundamentally different structural properties.
 
-### Scripts
+### Script
 
-#### `elliptic_validation_lgbm.py`
+#### `ellipticpp_gnn_external_validation.py`
 
-Performs a structural analysis of the Elliptic++ graph and verifies that
-all transaction edges are intra-timestep. The script computes:
+This script reproduces the cross-benchmark experiments reported in the paper. It performs a chronological evaluation of a GraphSAGE-based model on Elliptic++ under progressively constrained graph connectivity.
 
-- edge connectivity statistics;
-- train-test connectivity diagnostics;
-- test-to-test connectivity analysis;
-- LightGBM performance under temporal evaluation protocols.
+The following evaluation protocols are implemented:
 
-The analysis confirms that Elliptic++ eliminates train-test graph
-connectivity by construction, providing a useful contrast to the
-proposed benchmark.
+1. **MLP baseline** (feature-only model without graph information)
+2. **Standard graph**
+3. **No test-test edges**
+4. **No history-test edges**
+5. **Fully isolated test graph**
 
-#### `elliptic_gnn_external_validation.py`
+The script automatically:
 
-Evaluates GraphSAGE under multiple graph-isolation protocols:
-
-1. Standard graph
-2. No test-test edges
-3. No history-test edges
-4. Fully isolated test graph
-
-A feature-only MLP baseline is also included.
-
-The objective is not to optimize performance on Elliptic++, but to
-analyze how progressively removing graph connectivity affects predictive
-performance under a benchmark with fundamentally different structural
-properties.
+* loads the Elliptic++ dataset;
+* constructs the graph for each connectivity protocol;
+* trains the GraphSAGE model under the official chronological split;
+* selects the decision threshold on the validation period;
+* evaluates AUC-ROC, AUC-PR, Precision, Recall, and F1-score;
+* exports the complete experimental results as CSV files.
 
 ### Purpose
 
-The Elliptic++ experiments serve as an external validation of the
-connectivity-aware evaluation framework proposed in the paper.
+These experiments provide an external validation of the connectivity-aware evaluation framework proposed in the paper.
 
-The results demonstrate that connectivity-driven performance gains are
-benchmark-dependent rather than universal properties of graph neural
-networks. While the proposed benchmark exhibits strong sensitivity to
-structural exposure, Elliptic++ remains largely stable under graph
-isolation due to its intra-timestep graph design and highly informative
-transaction features.
+Unlike the proposed heterogeneous Bitcoin benchmark, Elliptic++ is represented as a homogeneous transaction graph containing only transaction-to-transaction edges. Consequently, the benchmark exhibits fundamentally different structural connectivity characteristics.
+
+The comparison demonstrates that the influence of graph connectivity is benchmark-dependent rather than a universal property of Graph Neural Networks. While predictive performance on the proposed benchmark is highly sensitive to structural exposure, Elliptic++ exhibits a markedly different response to graph isolation, highlighting the importance of explicitly measuring connectivity conditions when evaluating graph-based fraud detection systems.
+
 
 These experiments support the paper's central claim that graph
 connectivity should be treated as an explicit evaluation variable rather

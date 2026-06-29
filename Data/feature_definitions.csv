@@ -1,4 +1,4 @@
-feature,category,description
+# feature,category,description
 input_count,structural,Number of transaction inputs.
 output_count,structural,Number of transaction outputs.
 input_addr_count,structural,Number of unique input addresses.

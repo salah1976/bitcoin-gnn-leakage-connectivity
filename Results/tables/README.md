@@ -87,6 +87,21 @@ The table reports model performance across multiple classification thresholds an
 
 The threshold selected in the paper is determined exclusively on the validation period (D4) and evaluated on the fully held-out D5–D6 test period.
 
+### `table comparison_bitfraud_elliptic.csv
+
+
+Comparison of connectivity sensitivity between the proposed Bitcoin Fraud benchmark and Elliptic++. The table reports the AUC-PR obtained under the standard evaluation protocol and the reduced-connectivity protocol, together with the absolute and relative performance degradation.
+
+**Columns**
+
+- `dataset` – Benchmark name (Bitcoin Fraud or Elliptic++).
+- `reduced_AUC_PR` – AUC-PR obtained under the reduced-connectivity evaluation protocol.
+- `standard_AUC_PR` – AUC-PR obtained under the standard evaluation protocol.
+- `delta_AUC_PR` – Absolute difference in AUC-PR between the standard and reduced protocols.
+- `relative_drop_pct` – Relative percentage decrease in AUC-PR from the standard to the reduced protocol.
+
+
+
 ---
 
 ## Evaluation Protocol

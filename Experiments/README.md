@@ -23,6 +23,13 @@ The script performs:
 * Structural exposure evaluation
 * Bootstrap confidence interval estimation
 * Comparison with previously reported benchmark baselines
+* ### Targeted λ sweep
+
+The pipeline additionally performs a targeted connectivity sweep to quantify how GriffinGNN performance changes as structural exposure (λ) is progressively reduced.
+
+For each target λ, the Top-K connectivity parameter is identified using a binary search, exploiting the monotonic relationship between K and the resulting λ. The sweep uses a fine resolution of 0.5 percentage points in the critical 15–30% range, with coarser targets outside this transition region.
+
+Each configuration is evaluated using AUC-PR, AUC-ROC, F1-score, precision, and recall. Results are cached to avoid redundant evaluations and continuously checkpointed in JSON format, allowing the sweep to be resumed after interruption.
 
 The script reproduces the main results reported in the paper.
 

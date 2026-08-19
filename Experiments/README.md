@@ -1,8 +1,6 @@
 # Experiments
 
-This directory contains the scripts used to reproduce the leakage-aware Graph Neural Network experiments reported in the paper:
-
-**"When Graph Connectivity Becomes Leakage: A Leakage-Aware Evaluation of Graph Neural Networks for Bitcoin Fraud Detection"**
+This directory contains the scripts used to reproduce the leakage-aware Graph Neural Network experiments.
 
 The experiments start from the processed BITFRAUD benchmark dataset and focus on graph construction, connectivity-aware evaluation, and structural exposure analysis.
 

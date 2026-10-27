@@ -1,0 +1,18 @@
+% service_table.tex (label tab:service) : exclusion des adresses signalees a fort degre (nb de tx du benchmark qui touchent l'adresse). Source : eval_excluding_services.py, 6 graines.
+\begin{table}[t]\centering\small
+\caption{Robustness to high-degree reported addresses (AUC-PR, mean $\pm$ sd over 6 seeds). ``Degree $\geq d$'' removes the test transactions whose positive label depends only on reported addresses touched by at least $d$ benchmark transactions ($3$, $5$ and $14$ addresses for $d=1000,500,100$); negatives are kept. Degree $\geq5000$ is the single most active address (identical to $-$top-1 in Table~\ref{tab:dominant}). The rule is the label-free address-history baseline.}
+\label{tab:service}
+\begin{tabular}{llcccc}\toprule
+Graph & Model & All test & deg.\ $\geq1000$ & deg.\ $\geq500$ & deg.\ $\geq100$ \\
+\midrule
+\multicolumn{2}{l}{Positives (prevalence, \%)} & 5,900 (0.91) & 823 (0.13) & 703 (0.11) & 219 (0.03) \\
+\midrule
+Known-Address & GriffinGNN (full) & 0.741$\pm$0.054 & 0.249$\pm$0.025 & 0.190$\pm$0.024 & 0.053$\pm$0.024 \\
+ & GriffinGNN (no fraud attr.) & 0.776$\pm$0.024 & 0.184$\pm$0.046 & 0.143$\pm$0.052 & 0.006$\pm$0.004 \\
+Natural & GriffinGNN (full) & 0.747$\pm$0.070 & 0.343$\pm$0.022 & 0.313$\pm$0.022 & 0.135$\pm$0.035 \\
+ & GriffinGNN (no fraud attr.) & 0.829$\pm$0.003 & 0.484$\pm$0.040 & 0.411$\pm$0.039 & 0.076$\pm$0.025 \\
+Any graph & Rule (history) & 0.923 & 0.496 & 0.391 & 0.028 \\
+\midrule
+\multicolumn{2}{l}{Lift of the rule (AUC-PR / prevalence)} & 102 & 388 & 358 & 83 \\
+\multicolumn{2}{l}{Lift, Known-Address, GriffinGNN (full)} & 82 & 195 & 174 & 155 \\
+\bottomrule\end{tabular}\end{table}

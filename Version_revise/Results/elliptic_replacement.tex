@@ -1,0 +1,25 @@
+% Remplacement de tab:elliptic_protocols / tab:cross_benchmark et du texte Elliptic++ (Sect. 6.6) -- a integrer dans la passe finale.
+% Source : elliptic_exposure.py (CPU) et elliptic_gnn_multiseed.py (6 seeds : 42, 123, 2024, 7, 101, 202).
+
+\paragraph{Elliptic++ as a complementary regime.}
+Elliptic++ has $203{,}769$ transactions, of which $46{,}564$ are labelled ($4{,}545$ illicit). We train on time steps 1--29, validate on 30--34 and test on 35--49 ($16{,}670$ labelled test transactions, $1{,}083$ illicit, $6.50\%$). Money-flow edges are intra-time-step, so no edge joins the training and test periods. Using the public address--transaction files, we compute the same quantities as on BitFraud. The connectivity $\lambda$ is high ($98.1\%$ of labelled test transactions share an address with another test transaction; $74.4\%$ on the transaction graph restricted to labelled nodes), but the historical exposure of fraud is almost null: only $1.6\%$ of illicit test transactions share an address with the training period, against $37.3\%$ of licit ones. The address-history rule is at chance level (AUC-ROC $0.501$, AUC-PR $0.067$ for a prevalence of $0.065$).
+
+Table~\ref{tab:elliptic_multiseed} reports six seeds, with each trained model evaluated under both graphs. The graph brings no gain: the GraphSAGE model with graph reaches $0.712\pm0.045$ AUC-PR, below the MLP ($0.739\pm0.008$), and removing test-to-test edges brings it to the level of the MLP ($0.738\pm0.009$). The paired difference ($+0.025\pm0.043$, five seeds out of six) is not significant and is driven by one seed. Removing history--test edges changes nothing, since none exists. Elliptic++ is thus a regime with high $\lambda$ but negligible $\rho$ for fraud, where connectivity removal has no historical signal to destroy. This is consistent with the exposure account and does not contradict it. Threshold-dependent scores such as F1 vary widely across seeds (standard deviation up to $0.11$) and are not reported.
+
+\begin{table}[t]
+\centering
+\caption{Elliptic++, six seeds (mean $\pm$ s.d.). The graph models are evaluated, without retraining, under each test graph. ``Without test--test'' is identical to ``fully isolated'' (no edge joins training and test periods), and ``without history--test'' is identical to the standard graph (no such edge).}
+\label{tab:elliptic_multiseed}
+\small
+\begin{tabular}{lcc}
+\hline
+Configuration & AUC-PR & AUC-ROC \\
+\hline
+MLP, no graph & $0.739\pm0.008$ & $0.894\pm0.002$ \\
+GraphSAGE, standard graph & $0.712\pm0.045$ & $0.886\pm0.008$ \\
+GraphSAGE, without test--test edges & $0.738\pm0.009$ & $0.888\pm0.004$ \\
+\hline
+\multicolumn{3}{l}{Paired difference (without $-$ standard): $+0.025\pm0.043$, 5/6 seeds $>0$} \\
+\hline
+\end{tabular}
+\end{table}

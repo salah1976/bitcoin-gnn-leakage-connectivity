@@ -1,0 +1,41 @@
+\begin{table}[!htbp]
+\centering
+\small
+\caption{GraphSAGE-1L (one hop, 57{,}642 parameters) across training seeds, with historical fraud address attributes: AUC-PR under three test-graph constructions.}
+\label{tab:seeds_sage_full}
+\begin{tabular}{lcccc}
+\hline
+Seed & Known-Address & Natural graph & Isolated ($K{=}1$) & Relative drop (\%) \\
+\hline
+7 & 0.8200 & 0.8293 & 0.1630 & 80.3 \\
+42 & 0.7032 & 0.6482 & 0.1808 & 72.1 \\
+101 & 0.7861 & 0.7825 & 0.1330 & 83.0 \\
+123 & 0.7216 & 0.7339 & 0.2121 & 71.1 \\
+202 & 0.7315 & 0.6119 & 0.1289 & 78.9 \\
+2024 & 0.7185 & 0.6873 & 0.1127 & 83.6 \\
+\hline
+Mean $\pm$ std & 0.7468 $\pm$ 0.0458 & 0.7155 $\pm$ 0.0823 & 0.1551 $\pm$ 0.0373 & 78.2 $\pm$ 5.4 \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[!htbp]
+\centering
+\small
+\caption{GraphSAGE-1L across training seeds, without historical fraud address attributes: AUC-PR under three test-graph constructions.}
+\label{tab:seeds_sage_no_fraud}
+\begin{tabular}{lcccc}
+\hline
+Seed & Known-Address & Natural graph & Isolated ($K{=}1$) & Relative drop (\%) \\
+\hline
+7 & 0.8397 & 0.7030 & 0.1743 & 75.2 \\
+42 & 0.8336 & 0.7464 & 0.2551 & 65.8 \\
+101 & 0.8106 & 0.6424 & 0.1393 & 78.3 \\
+123 & 0.7318 & 0.4790 & 0.1109 & 76.8 \\
+202 & 0.8100 & 0.6293 & 0.0806 & 87.2 \\
+2024 & 0.7567 & 0.6153 & 0.1499 & 75.6 \\
+\hline
+Mean $\pm$ std & 0.7971 $\pm$ 0.0433 & 0.6359 $\pm$ 0.0915 & 0.1517 $\pm$ 0.0601 & 76.5 $\pm$ 6.8 \\
+\hline
+\end{tabular}
+\end{table}

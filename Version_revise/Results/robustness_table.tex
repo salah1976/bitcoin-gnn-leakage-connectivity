@@ -1,0 +1,23 @@
+% robustness_table.tex : AUC-PR et AUC-ROC par sous-ensemble (6 seeds, moyenne +- ecart-type), sans adresses dominantes
+\begin{table*}[t]\centering\small
+\caption{Robustness to dominant reported addresses. $-$top-$N$ removes the test transactions whose positive label depends only on the $N$ most active reported addresses (negatives kept). AUC-PR depends on prevalence, so prevalence and AUC-ROC are reported. The rule is the label-free address-history baseline (addresses seen in positive training transactions). Mean $\pm$ sd over 6 seeds.}
+\label{tab:dominant}
+\begin{tabular}{llccccc}\toprule
+Graph & Model & All test & D5 & D6 & $-$top-1 & $-$top-10 \\
+\midrule
+\multicolumn{2}{l}{Positives (prevalence, \%)} & 5,900 (0.91) & 1,668 (0.56) & 4,232 (1.20) & 1,653 (0.26) & 221 (0.03) \\
+\midrule
+\multicolumn{7}{l}{\textit{AUC-PR}} \\
+Known-Address & GriffinGNN (full) & 0.741$\pm$0.054 & 0.572$\pm$0.044 & 0.824$\pm$0.048 & 0.182$\pm$0.033 & 0.053$\pm$0.023 \\
+ & GriffinGNN (no fraud attr.) & 0.776$\pm$0.024 & 0.480$\pm$0.067 & 0.880$\pm$0.012 & 0.096$\pm$0.023 & 0.007$\pm$0.005 \\
+Natural & GriffinGNN (full) & 0.747$\pm$0.070 & 0.604$\pm$0.031 & 0.831$\pm$0.072 & 0.239$\pm$0.023 & 0.134$\pm$0.034 \\
+ & GriffinGNN (no fraud attr.) & 0.829$\pm$0.003 & 0.609$\pm$0.003 & 0.911$\pm$0.003 & 0.258$\pm$0.020 & 0.078$\pm$0.026 \\
+Any graph & Rule (history) & 0.923 & 0.772 & 0.964 & 0.481 & 0.029 \\
+\midrule
+\multicolumn{7}{l}{\textit{AUC-ROC}} \\
+Known-Address & GriffinGNN (full) & 0.951$\pm$0.020 & 0.905$\pm$0.038 & 0.970$\pm$0.012 & 0.827$\pm$0.070 & 0.819$\pm$0.022 \\
+ & GriffinGNN (no fraud attr.) & 0.909$\pm$0.017 & 0.834$\pm$0.037 & 0.944$\pm$0.010 & 0.677$\pm$0.062 & 0.834$\pm$0.048 \\
+Natural & GriffinGNN (full) & 0.972$\pm$0.019 & 0.940$\pm$0.043 & 0.983$\pm$0.011 & 0.901$\pm$0.069 & 0.901$\pm$0.008 \\
+ & GriffinGNN (no fraud attr.) & 0.950$\pm$0.018 & 0.882$\pm$0.033 & 0.975$\pm$0.012 & 0.823$\pm$0.064 & 0.944$\pm$0.008 \\
+Any graph & Rule (history) & 0.985 & 0.970 & 0.991 & 0.946 & 0.905 \\
+\bottomrule\end{tabular}\end{table*}

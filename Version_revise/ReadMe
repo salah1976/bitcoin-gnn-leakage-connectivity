@@ -1,1 +1,22 @@
+# Revised version: Structural Exposure Framework
 
+Material for the revised manuscript "Rethinking Graph Neural Network Evaluation: A Structural Exposure Framework Beyond Temporal Splits" (BitFraud benchmark, 1,687,072 Bitcoin transactions, six chronological snapshots).
+
+## Content
+
+- `Experiments/`: scripts of the revision (multi-seed runs with seeds 42, 123, 2024, 7, 101, 202, structural exposure protocols based on test-test connectivity (lambda) and historical exposure (rho), additional baselines).
+- `Results/`: result tables and figures of the revision.
+
+The material of the first submission is in `../V1_original/`.
+
+## Note on the baseline
+
+In the first submission, the 0.8372 AUC-PR figure refers to GriffinGNN, not to GraphSAGE. The revised version reports matched six-seed comparisons.
+
+## Dataset
+
+BitFraud is archived on Zenodo (version 1, 1 June 2026): https://doi.org/10.5281/zenodo.20498236 (all versions: https://doi.org/10.5281/zenodo.20498235).
+
+## License
+
+Apache License 2.0, see the `LICENSE` file at the repository root.
